@@ -1,4 +1,4 @@
-#create and setup project
+# create and setup project
 1. folder structure
     1. create folder
     2. open folder in VS Code (right-click -- open in visual studio code)
