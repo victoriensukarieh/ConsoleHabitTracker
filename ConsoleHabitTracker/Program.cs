@@ -1,4 +1,9 @@
-﻿
-Console.WriteLine("Hello, World!");
+﻿using ConsoleHabitTracker;
 
-Console.ReadLine();
+if(!Database.DatabaseExists()){        
+    Database.prepareDatabase();
+    Database.setDefaults();    
+}
+Menu.showGreeting();
+
+Menu.showMainMenu();
