@@ -7,3 +7,7 @@
     2. dotnet new console --name ConsoleHabitTracker
     3. dotnet new gitignore
 3. 
+
+# todo
+1. method to take a list and display it as a table with better layout
+    taking in consideration each column should be as wide as the bigger string used

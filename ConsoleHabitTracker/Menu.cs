@@ -16,7 +16,7 @@ class Menu
         //Console.Clear();
         Console.WriteLine(@"Press A to view habits Menu.
 Press B to view system units Menu.
-Press C to register an entry.
+Press C to View entries Menu.
 Press X to Exit.");
 
         while (rightChoice == false)
@@ -33,7 +33,7 @@ Press X to Exit.");
                     rightChoice = true;
                     break;
                 case "C":
-
+                    ShowEntryMenu();
                     rightChoice = true;
                     break;
                 case "X":
@@ -47,7 +47,7 @@ Press X to Exit.");
         }
     }
 
-    protected static void showHabitMenu()
+    public static void showHabitMenu()
     {
         //List<Habit> habits = new();
         //habits = Database.getHabits();
@@ -173,7 +173,7 @@ Press X to go back to the main menu.");
         Menu.showMainMenu();
     }
 
-    protected static void showUnitMenu()
+    public static void showUnitMenu()
     {
         int unitId;
         //Console.WriteLine("Units Menu Selected");
@@ -291,5 +291,95 @@ Press X to go back to the main menu.");
         }
         Console.Clear();
         Menu.showMainMenu();
+    }
+
+    public static void ShowEntryMenu()
+    {
+        //List<Habit> habits = new();
+        //habits = Database.getHabits();
+
+        string choice = "";
+        bool rightChoice = false;
+        //string idInput;
+        int habitId;
+        while (rightChoice == false)
+        {
+            Console.Clear();
+            Console.WriteLine("Welcome to the Entries Menu.");
+            Console.WriteLine("---------------------------");
+            Console.WriteLine(@"Press 1 To View Tracked Habits entries
+Press 2 to view a summary of Tracked habits
+Press 3 to add an entry.
+Press 4 to update an entry.
+Press 5 to delete an entry.
+Press X to go back to the main menu.");
+            choice = Console.ReadLine();
+            switch (choice.ToUpper())
+            {
+                case "1":
+                    Console.Clear();
+                    Console.WriteLine("Which Habit do you want to View?");
+                    Habit.DisplayHabits();
+                    habitId = Convert.ToInt32(Console.ReadLine());
+                    Habit.DisplaySingleHabit(habitId);
+                    Console.WriteLine("----------------------------------");
+                    Entry.DisplayEntries(habitId);
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadLine();
+                    break;
+                case "2":
+                    Console.Clear();
+                    Entry.DisplayEntriesSummary();
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadLine();
+                    break;
+                case "3":
+                    int quantity;
+                    Console.Clear();
+                    Console.WriteLine("Which Habit do you want to log?");
+                    Habit.DisplayHabits();
+                    habitId = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Quantity:");
+                    quantity = Convert.ToInt32(Console.ReadLine());
+                    if (Entry.AddEntry(habitId, quantity))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Log inserted successfully.");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Something went wrong while inserting data");
+                        Console.ResetColor();
+                    }
+
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadLine();
+                    break;
+
+                case "4":
+                    Console.Clear();
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadLine();
+                    break;
+                case "5":
+                    Console.Clear();
+                    Console.WriteLine("Press any key to go back.");
+                    Console.ReadLine();
+                    break;
+                case "X":
+                    rightChoice = true;
+                    break;
+                default:
+                    Console.WriteLine("Wrong choice.");
+                    Console.WriteLine("Press any key to try again.");
+                    Console.ReadLine();
+                    break;
+            }
+        }
+        Console.Clear();
+        Menu.showMainMenu();
+
     }
 }

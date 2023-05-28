@@ -475,4 +475,9 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+#local SQLite DB
 ConsoleHabitTracker/HabitTracker.db
+
+#SQL script files (for testing purposes)
+*.sql
