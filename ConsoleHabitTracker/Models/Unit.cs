@@ -116,4 +116,27 @@ class Unit
         }
         else { return false; }
     }
+
+    public static Boolean UnitExist(int unitId){
+        int counter = 0;
+        using (var connection = new SqliteConnection(Database.connectionString))
+        {
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+
+            tableCmd.CommandText = $"SELECT * FROM Unit where HabitID = {unitId}";
+            SqliteDataReader reader = tableCmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                counter++;
+            }
+            connection.Close();
+        }
+        if (counter > 0)
+        {
+            return true;
+        }
+        else { return false; }
+    }
 }

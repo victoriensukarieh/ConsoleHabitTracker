@@ -122,7 +122,7 @@ class Habit
         }
     }
 
-    public static Boolean IsHabitTracked(int habitID)
+    public static Boolean IsHabitTracked(int habitId)
     {
         int counter = 0;
         using (var connection = new SqliteConnection(Database.connectionString))
@@ -130,7 +130,30 @@ class Habit
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            tableCmd.CommandText = $"SELECT * FROM Entry where HabitID = {habitID}";
+            tableCmd.CommandText = $"SELECT * FROM Entry where HabitID = {habitId}";
+            SqliteDataReader reader = tableCmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                counter++;
+            }
+            connection.Close();
+        }
+        if (counter > 0)
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
+    public static Boolean HabitExist(int habitId){
+        int counter = 0;
+        using (var connection = new SqliteConnection(Database.connectionString))
+        {
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+
+            tableCmd.CommandText = $"SELECT * FROM Habit where HabitID = {habitId}";
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
