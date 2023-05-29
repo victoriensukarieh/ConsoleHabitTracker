@@ -13,7 +13,6 @@ class Menu
         string choice = "";
         bool rightChoice = false;
 
-        //Console.Clear();
         Console.WriteLine(@"Press A to view habits Menu.
 Press B to view system units Menu.
 Press C to View entries Menu.
@@ -41,7 +40,6 @@ Press X to Exit.");
                     break;
                 default:
                     Console.WriteLine(@"Wrong choice. Try again please.");
-                    //choice = Console.ReadLine();
                     break;
             }
         }
@@ -49,9 +47,6 @@ Press X to Exit.");
 
     public static void showHabitMenu()
     {
-        //List<Habit> habits = new();
-        //habits = Database.getHabits();
-
         string choice = "";
         bool rightChoice = false;
         //string idInput;
@@ -102,7 +97,6 @@ Press X to go back to the main menu.");
                     Console.Clear();
                     string newName;
                     int newUnitId;
-
                     Console.WriteLine("Which Habit do you want to update. choose an ID");
                     Habit.DisplayHabits();
                     habitId = Convert.ToInt32(Console.ReadLine());
@@ -155,7 +149,7 @@ Press X to go back to the main menu.");
                             Console.ResetColor();
                         }
                     }
-                    //rightChoice = true;
+
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;
@@ -176,7 +170,6 @@ Press X to go back to the main menu.");
     public static void showUnitMenu()
     {
         int unitId;
-        //Console.WriteLine("Units Menu Selected");
 
         string choice = "";
         bool rightChoice = false;
@@ -204,7 +197,6 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Enter the name of your Unit:");
                     string UnitName = Console.ReadLine();
                     Console.WriteLine("Choose the symbol of your unit:");
-                    //Unit.DisplayUnits();
                     string UnitSymbol = Console.ReadLine();
 
                     if (Unit.AddUnit(UnitName, UnitSymbol))
@@ -225,7 +217,6 @@ Press X to go back to the main menu.");
                 case "3":
                     Console.Clear();
                     string newName, newSym;
-
                     Console.WriteLine("Which Unit do you want to update. choose an ID");
                     Unit.DisplayUnits();
                     unitId = Convert.ToInt32(Console.ReadLine());
@@ -275,7 +266,7 @@ Press X to go back to the main menu.");
                             Console.ResetColor();
                         }
                     }
-                    //rightChoice = true;
+
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;
@@ -295,13 +286,10 @@ Press X to go back to the main menu.");
 
     public static void ShowEntryMenu()
     {
-        //List<Habit> habits = new();
-        //habits = Database.getHabits();
-
         string choice = "";
         bool rightChoice = false;
-        //string idInput;
-        int habitId;
+
+        int habitId, entryId;
         while (rightChoice == false)
         {
             Console.Clear();
@@ -357,14 +345,52 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;
-
                 case "4":
                     Console.Clear();
+                    Console.WriteLine("Which Habit do you want to Update?");
+                    Habit.DisplayHabits();
+                    habitId = Convert.ToInt32(Console.ReadLine());                    
+                    Console.WriteLine("choose the entry you want to update (choose entry ID)");
+                    Entry.DisplayEntriesDetailed(habitId);
+                    entryId = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine("Enter Quantity:");
+                    quantity = Convert.ToInt32(Console.ReadLine());
+                    if (Entry.UpdateEntry(entryId, quantity))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Log updated successfully.");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Something went wrong while updating data");
+                        Console.ResetColor();
+                    }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;
                 case "5":
                     Console.Clear();
+                    Console.WriteLine("Which Habit do you want to delete entries from?");
+                    Habit.DisplayHabits();
+                    habitId = Convert.ToInt32(Console.ReadLine());                    
+                    Console.WriteLine("choose the entry you want to delete (choose entry ID)");
+                    Entry.DisplayEntriesDetailed(habitId);
+                    entryId = Convert.ToInt32(Console.ReadLine());
+
+                    if (Entry.DeleteEntry(entryId))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("Log deleted successfully.");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Something went wrong while deleting data");
+                        Console.ResetColor();
+                    }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;
