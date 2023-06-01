@@ -15,7 +15,7 @@ class Helpers{
         while (String.IsNullOrEmpty(input))
         {
             Console.Beep();
-            Console.WriteLine("The input needs to be an integer. Enter the correct input.");
+            Console.WriteLine("The input cannot be empty. Enter the correct input.");
             input = Console.ReadLine();
         }
         return input;       
