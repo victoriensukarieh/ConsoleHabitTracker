@@ -11,3 +11,4 @@
 # todo
 1. method to take a list and display it as a table with better layout
     taking in consideration each column should be as wide as the bigger string used
+2. cancel functionality in the middle of an operation
