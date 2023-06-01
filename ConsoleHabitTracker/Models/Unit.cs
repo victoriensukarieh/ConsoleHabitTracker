@@ -124,7 +124,7 @@ class Unit
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            tableCmd.CommandText = $"SELECT * FROM Unit where HabitID = {unitId}";
+            tableCmd.CommandText = $"SELECT * FROM Unit where ID = {unitId}";
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)

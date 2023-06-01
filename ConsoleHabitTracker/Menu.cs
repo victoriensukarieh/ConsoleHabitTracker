@@ -77,6 +77,11 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Choose the ID of the unit to use:");
                     Unit.DisplayUnits();
                     int habitUnit = Convert.ToInt32(Console.ReadLine());
+                    while (!Unit.UnitExist(habitUnit))
+                    {
+                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        habitUnit = Convert.ToInt32(Console.ReadLine());
+                    }
 
                     if (Habit.AddHabit(habitName, habitUnit))
                     {
@@ -100,12 +105,21 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Which Habit do you want to update. choose an ID");
                     Habit.DisplayHabits();
                     habitId = Convert.ToInt32(Console.ReadLine());
+                    while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("Choose a new Habit Name");
                     newName = Console.ReadLine();
                     Console.WriteLine("choose a new Unit (type the ID of the unit you want to choose.)");
                     Unit.DisplayUnits();
                     newUnitId = Convert.ToInt32(Console.ReadLine());
-                    Unit.DisplayUnits();
+                    while (!Unit.UnitExist(newUnitId))
+                    {
+                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        newUnitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     if (Habit.UpdateHabit(habitId, newName, newUnitId))
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -127,7 +141,11 @@ Press X to go back to the main menu.");
                     Habit.DisplayHabits();
                     Console.WriteLine("Which habit do you want to delete. choose an ID (please note all entries related to this habit will be deleted as well.)");
                     habitId = Convert.ToInt32(Console.ReadLine());
-
+                    while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     if (Habit.IsHabitTracked(habitId))
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -220,6 +238,11 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Which Unit do you want to update. choose an ID");
                     Unit.DisplayUnits();
                     unitId = Convert.ToInt32(Console.ReadLine());
+                    while (!Unit.UnitExist(unitId))
+                    {
+                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        unitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("Choose a new Unit Name");
                     newName = Console.ReadLine();
                     Console.WriteLine("choose a new Unit Symbol");
@@ -244,7 +267,11 @@ Press X to go back to the main menu.");
                     Unit.DisplayUnits();
                     Console.WriteLine("Which unit do you want to delete. choose an ID (please you cannot delete a used unit.)");
                     unitId = Convert.ToInt32(Console.ReadLine());
-
+                    while (!Unit.UnitExist(unitId))
+                    {
+                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        unitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     if (Unit.IsUnitUsed(unitId))
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
@@ -309,6 +336,11 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Which Habit do you want to View?");
                     Habit.DisplayHabits();
                     habitId = Convert.ToInt32(Console.ReadLine());
+                    while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Habit.DisplaySingleHabit(habitId);
                     Console.WriteLine("----------------------------------");
                     Entry.DisplayEntries(habitId);
@@ -327,6 +359,11 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Which Habit do you want to log?");
                     Habit.DisplayHabits();
                     habitId = Convert.ToInt32(Console.ReadLine());
+                     while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("Enter Quantity:");
                     quantity = Convert.ToInt32(Console.ReadLine());
                     if (Entry.AddEntry(habitId, quantity))
@@ -349,10 +386,21 @@ Press X to go back to the main menu.");
                     Console.Clear();
                     Console.WriteLine("Which Habit do you want to Update?");
                     Habit.DisplayHabits();
-                    habitId = Convert.ToInt32(Console.ReadLine());                    
+                    habitId = Convert.ToInt32(Console.ReadLine());
+                    while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("choose the entry you want to update (choose entry ID)");
+
                     Entry.DisplayEntriesDetailed(habitId);
                     entryId = Convert.ToInt32(Console.ReadLine());
+                    while (!Entry.EntryExist(entryId))
+                    {
+                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        entryId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("Enter Quantity:");
                     quantity = Convert.ToInt32(Console.ReadLine());
                     if (Entry.UpdateEntry(entryId, quantity))
@@ -374,11 +422,20 @@ Press X to go back to the main menu.");
                     Console.Clear();
                     Console.WriteLine("Which Habit do you want to delete entries from?");
                     Habit.DisplayHabits();
-                    habitId = Convert.ToInt32(Console.ReadLine());                    
+                    habitId = Convert.ToInt32(Console.ReadLine());
+                    while (!Habit.HabitExist(habitId))
+                    {
+                        Console.WriteLine("No Enty with the chosen ID. Choose again.");
+                        habitId = Convert.ToInt32(Console.ReadLine());
+                    }
                     Console.WriteLine("choose the entry you want to delete (choose entry ID)");
                     Entry.DisplayEntriesDetailed(habitId);
                     entryId = Convert.ToInt32(Console.ReadLine());
-
+                    while (!Entry.EntryExist(entryId))
+                    {
+                        Console.WriteLine("No Enty with the chosen ID. Choose again.");
+                        entryId = Convert.ToInt32(Console.ReadLine());
+                    }
                     if (Entry.DeleteEntry(entryId))
                     {
                         Console.ForegroundColor = ConsoleColor.Green;

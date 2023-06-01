@@ -153,7 +153,7 @@ class Habit
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            tableCmd.CommandText = $"SELECT * FROM Habit where HabitID = {habitId}";
+            tableCmd.CommandText = $"SELECT * FROM Habit where ID = {habitId}";
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)

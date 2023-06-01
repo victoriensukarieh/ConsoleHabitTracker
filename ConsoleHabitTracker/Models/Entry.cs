@@ -158,4 +158,27 @@ GROUP BY h.ID";
         }
     }
 
+    public static Boolean EntryExist(int entryId){
+        int counter = 0;
+        using (var connection = new SqliteConnection(Database.connectionString))
+        {
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+
+            tableCmd.CommandText = $"SELECT * FROM Entry where ID = {entryId}";
+            SqliteDataReader reader = tableCmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                counter++;
+            }
+            connection.Close();
+        }
+        if (counter > 0)
+        {
+            return true;
+        }
+        else { return false; }
+    }
+
 }
