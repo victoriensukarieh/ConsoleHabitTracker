@@ -359,7 +359,7 @@ Press X to go back to the main menu.");
                     Console.WriteLine("Which Habit do you want to log?");
                     Habit.DisplayHabits();
                     habitId = Helpers.ValidateIntegerInput();
-                     while (!Habit.HabitExist(habitId))
+                    while (!Habit.HabitExist(habitId))
                     {
                         Console.WriteLine("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();

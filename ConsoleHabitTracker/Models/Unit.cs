@@ -117,7 +117,8 @@ class Unit
         else { return false; }
     }
 
-    public static Boolean UnitExist(int unitId){
+    public static Boolean UnitExist(int unitId)
+    {
         int counter = 0;
         using (var connection = new SqliteConnection(Database.connectionString))
         {

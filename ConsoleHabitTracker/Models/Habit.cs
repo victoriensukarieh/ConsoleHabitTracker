@@ -146,7 +146,8 @@ class Habit
         else { return false; }
     }
 
-    public static Boolean HabitExist(int habitId){
+    public static Boolean HabitExist(int habitId)
+    {
         int counter = 0;
         using (var connection = new SqliteConnection(Database.connectionString))
         {

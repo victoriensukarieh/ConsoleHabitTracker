@@ -1,5 +1,7 @@
-class Helpers{
-    public static int ValidateIntegerInput(){
+class Helpers
+{
+    public static int ValidateIntegerInput()
+    {
         string input = Console.ReadLine();
         while (String.IsNullOrEmpty(input) || !Int32.TryParse(input, out _))
         {
@@ -10,7 +12,8 @@ class Helpers{
         return Convert.ToInt32(input);
     }
 
-    public static string ValidateStringInput(){
+    public static string ValidateStringInput()
+    {
         string input = Console.ReadLine();
         while (String.IsNullOrEmpty(input))
         {
@@ -18,6 +21,6 @@ class Helpers{
             Console.WriteLine("The input cannot be empty. Enter the correct input.");
             input = Console.ReadLine();
         }
-        return input;       
+        return input;
     }
 }

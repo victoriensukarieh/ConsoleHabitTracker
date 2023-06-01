@@ -115,7 +115,7 @@ GROUP BY h.ID";
         }
     }
 
-    public static Boolean UpdateEntry(int entryId,int quantity)
+    public static Boolean UpdateEntry(int entryId, int quantity)
     {
         try
         {
@@ -148,7 +148,7 @@ GROUP BY h.ID";
                 tableCmd.CommandText = $"DELETE FROM Entry WHERE ID = {entryId}";
 
                 tableCmd.ExecuteNonQuery();
-                
+
                 return true;
             }
         }
@@ -158,7 +158,8 @@ GROUP BY h.ID";
         }
     }
 
-    public static Boolean EntryExist(int entryId){
+    public static Boolean EntryExist(int entryId)
+    {
         int counter = 0;
         using (var connection = new SqliteConnection(Database.connectionString))
         {
