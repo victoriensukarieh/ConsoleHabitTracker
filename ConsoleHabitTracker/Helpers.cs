@@ -5,7 +5,7 @@ class Helpers
         string input = Console.ReadLine();
         while (String.IsNullOrEmpty(input) || !Int32.TryParse(input, out _))
         {
-            Console.Beep();
+            //Console.Beep();
             Console.WriteLine("The input needs to be an integer. Enter the correct input.");
             input = Console.ReadLine();
         }
@@ -17,7 +17,7 @@ class Helpers
         string input = Console.ReadLine();
         while (String.IsNullOrEmpty(input))
         {
-            Console.Beep();
+            //Console.Beep();
             Console.WriteLine("The input cannot be empty. Enter the correct input.");
             input = Console.ReadLine();
         }

@@ -20,7 +20,7 @@ Press X to Exit.");
 
         while (rightChoice == false)
         {
-            choice = Console.ReadLine();
+            choice = Helpers.ValidateStringInput();
             switch (choice.ToUpper())
             {
                 case "A":
@@ -61,7 +61,7 @@ Press 2 to add a habit.
 Press 3 to update a habit.
 Press 4 to delete a habit.
 Press X to go back to the main menu.");
-            choice = Console.ReadLine();
+            choice = Helpers.ValidateStringInput();
             switch (choice.ToUpper())
             {
                 case "1":
@@ -73,7 +73,7 @@ Press X to go back to the main menu.");
                 case "2":
                     Console.Clear();
                     Console.WriteLine("Enter the name of your Habit:");
-                    string habitName = Console.ReadLine();
+                    string habitName = Helpers.ValidateStringInput();
                     Console.WriteLine("Choose the ID of the unit to use:");
                     Unit.DisplayUnits();
                     int habitUnit = Helpers.ValidateIntegerInput();
@@ -111,7 +111,7 @@ Press X to go back to the main menu.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Choose a new Habit Name");
-                    newName = Console.ReadLine();
+                    newName = Helpers.ValidateStringInput();
                     Console.WriteLine("choose a new Unit (type the ID of the unit you want to choose.)");
                     Unit.DisplayUnits();
                     newUnitId = Helpers.ValidateIntegerInput();
@@ -201,7 +201,7 @@ Press 2 to add a unit.
 Press 3 to update a unit.
 Press 4 to delete a unit.
 Press X to go back to the main menu.");
-            choice = Console.ReadLine();
+            choice = Helpers.ValidateStringInput();
             switch (choice.ToUpper())
             {
                 case "1":
@@ -213,9 +213,9 @@ Press X to go back to the main menu.");
                 case "2":
                     Console.Clear();
                     Console.WriteLine("Enter the name of your Unit:");
-                    string UnitName = Console.ReadLine();
+                    string UnitName = Helpers.ValidateStringInput();
                     Console.WriteLine("Choose the symbol of your unit:");
-                    string UnitSymbol = Console.ReadLine();
+                    string UnitSymbol = Helpers.ValidateStringInput();
 
                     if (Unit.AddUnit(UnitName, UnitSymbol))
                     {
@@ -244,7 +244,7 @@ Press X to go back to the main menu.");
                         unitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Choose a new Unit Name");
-                    newName = Console.ReadLine();
+                    newName = Helpers.ValidateStringInput();
                     Console.WriteLine("choose a new Unit Symbol");
                     newSym = Console.ReadLine();
                     if (Unit.UpdateUnit(unitId, newName, newSym))
@@ -328,7 +328,7 @@ Press 3 to add an entry.
 Press 4 to update an entry.
 Press 5 to delete an entry.
 Press X to go back to the main menu.");
-            choice = Console.ReadLine();
+            choice = Helpers.ValidateStringInput();
             switch (choice.ToUpper())
             {
                 case "1":
