@@ -34,7 +34,7 @@ Press X to Exit.");
                 case "C":
                     ShowEntryMenu();
                     rightChoice = true;
-                    break;                
+                    break;
                 case "X":
                     rightChoice = true;
                     break;
@@ -354,8 +354,8 @@ Press X to go back to the main menu.");
                     Entry.DisplayReportPerMonth();
                     Console.WriteLine("Entries Per Year");
                     Entry.DisplayReportPerYear();
-                     Console.WriteLine("Entries Per Habit (toatal)");
-                     Entry.DisplayEntriesSummary();
+                    Console.WriteLine("Entries Per Habit (toatal)");
+                    Entry.DisplayEntriesSummary();
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;

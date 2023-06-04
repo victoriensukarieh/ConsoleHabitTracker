@@ -26,7 +26,7 @@ class Helpers
         return input;
     }
 
-    public static void PrintTable(List<List<object>> tableData,List<String> header)
+    public static void PrintTable(List<List<object>> tableData, List<String> header)
     {
         Console.WriteLine();
         ConsoleTableBuilder

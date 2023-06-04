@@ -9,7 +9,7 @@ class Habit
         var headerData = new List<String>();
         headerData.Add("ID");
         headerData.Add("Name");
-        headerData.Add("Unit"); 
+        headerData.Add("Unit");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -25,12 +25,12 @@ class Habit
                 while (reader.Read())
                 {
                     var obj = new List<String>();
-                    tableData.Add(                   
-                        new List<object>{ reader.GetInt32(0), reader.GetString(1), reader.GetString(4)}                        
-                    );  
+                    tableData.Add(
+                        new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(4) }
+                    );
                     //Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Unit = {reader.GetString(4)}");
                 }
-                Helpers.PrintTable(tableData,headerData); 
+                Helpers.PrintTable(tableData, headerData);
             }
             else
             {

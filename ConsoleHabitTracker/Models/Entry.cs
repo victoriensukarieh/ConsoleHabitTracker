@@ -40,12 +40,13 @@ AND h.ID = {habitId}";
         }
     }
 
-    public static void DisplayReportPerYear(){
+    public static void DisplayReportPerYear()
+    {
         var tableData = new List<List<object>>();
         var headerData = new List<String>();
-       headerData.Add("Year");        
+        headerData.Add("Year");
         headerData.Add("Habit");
-        headerData.Add("Sum");       
+        headerData.Add("Sum");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -66,7 +67,7 @@ group by year";
                 {
                     var obj = new List<String>();
                     tableData.Add(
-                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2)}
+                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2) }
                     );
                 }
                 Helpers.PrintTable(tableData, headerData);
@@ -80,13 +81,14 @@ group by year";
 
     }
 
-     public static void DisplayReportPerMonth(){
+    public static void DisplayReportPerMonth()
+    {
         var tableData = new List<List<object>>();
         var headerData = new List<String>();
         headerData.Add("Year");
         headerData.Add("Month");
         headerData.Add("Habit");
-        headerData.Add("Sum");        
+        headerData.Add("Sum");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -108,7 +110,7 @@ group by year,month";
                 {
                     var obj = new List<String>();
                     tableData.Add(
-                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2),reader.GetString(3)}
+                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3) }
                     );
                 }
                 Helpers.PrintTable(tableData, headerData);
@@ -119,7 +121,7 @@ group by year,month";
             }
             connection.Close();
         }
-        
+
     }
 
     public static void DisplayEntriesDetailed(int habitId)
@@ -157,9 +159,9 @@ AND h.ID = {habitId}";
     {
         var tableData = new List<List<object>>();
         var headerData = new List<String>();
-       
+
         headerData.Add("Habit");
-        headerData.Add("Sum");        
+        headerData.Add("Sum");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -179,7 +181,7 @@ group by Habit";
                 {
                     var obj = new List<String>();
                     tableData.Add(
-                        new List<object> { reader.GetString(0), reader.GetString(1)}
+                        new List<object> { reader.GetString(0), reader.GetString(1) }
                     );
                 }
                 Helpers.PrintTable(tableData, headerData);
@@ -190,7 +192,7 @@ group by Habit";
             }
             connection.Close();
         }
-        
+
 
     }
 

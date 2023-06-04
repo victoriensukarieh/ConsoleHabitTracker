@@ -1,8 +1,9 @@
 ﻿using ConsoleHabitTracker;
 
-if(!Database.DatabaseExists()){        
+if (!Database.DatabaseExists())
+{
     Database.prepareDatabase();
-    Database.setDefaults();    
+    Database.setDefaults();
 }
 Menu.showGreeting();
 
