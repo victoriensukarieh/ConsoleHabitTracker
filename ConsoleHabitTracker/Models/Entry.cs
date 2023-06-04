@@ -9,6 +9,7 @@ class Entry
         headerData.Add("Quantity");
         headerData.Add("Symbol");
         headerData.Add("Date");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -19,6 +20,7 @@ from entry,Habit h,Unit
 WHERE h.ID = entry.habitId
 and unit.ID = h.UnitID
 AND h.ID = {habitId}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -47,6 +49,7 @@ AND h.ID = {habitId}";
         headerData.Add("Year");
         headerData.Add("Habit");
         headerData.Add("Sum");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -59,6 +62,7 @@ From Entry  ,Habit,Unit
 where habit.ID = Entry.HabitID
 and Unit.Id = Habit.UnitID
 group by year";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -78,7 +82,6 @@ group by year";
             }
             connection.Close();
         }
-
     }
 
     public static void DisplayReportPerMonth()
@@ -89,6 +92,7 @@ group by year";
         headerData.Add("Month");
         headerData.Add("Habit");
         headerData.Add("Sum");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -102,6 +106,7 @@ From Entry  ,Habit,Unit
 where habit.ID = Entry.HabitID
 and Unit.Id = Habit.UnitID
 group by year,month";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -121,12 +126,10 @@ group by year,month";
             }
             connection.Close();
         }
-
     }
 
     public static void DisplayEntriesDetailed(int habitId)
     {
-        //Console.WriteLine("Quantity\tSymbol\tDate");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -137,6 +140,7 @@ from entry,Habit h,Unit
 WHERE h.ID = entry.habitId
 and unit.ID = h.UnitID
 AND h.ID = {habitId}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -154,14 +158,13 @@ AND h.ID = {habitId}";
         }
     }
 
-
     public static void DisplayEntriesSummary()
     {
         var tableData = new List<List<object>>();
         var headerData = new List<String>();
-
         headerData.Add("Habit");
         headerData.Add("Sum");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -173,6 +176,7 @@ From Entry  ,Habit,Unit
 where habit.ID = Entry.HabitID
 and Unit.Id = Habit.UnitID
 group by Habit";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -192,8 +196,6 @@ group by Habit";
             }
             connection.Close();
         }
-
-
     }
 
     public static Boolean AddEntry(int habitId, int quantity)
@@ -227,6 +229,7 @@ group by Habit";
                 var tableCmd = connection.CreateCommand();
 
                 tableCmd.CommandText = $"UPDATE Entry SET Quantity='{quantity}' WHERE ID = {entryId}";
+
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -269,6 +272,7 @@ group by Habit";
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = $"SELECT * FROM Entry where ID = {entryId}";
+            
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -283,5 +287,4 @@ group by Habit";
         }
         else { return false; }
     }
-
 }

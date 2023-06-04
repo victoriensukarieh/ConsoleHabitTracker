@@ -9,12 +9,14 @@ class Unit
         headerData.Add("ID");
         headerData.Add("Name");
         headerData.Add("Symbol");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = @"SELECT ID,Name,Symbol FROM Unit";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -25,7 +27,6 @@ class Unit
                     tableData.Add(
                         new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(2) }
                     );
-                    //Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Symbol = {reader.GetString(2)}");
                 }
                 Helpers.PrintTable(tableData, headerData);
             }
@@ -68,6 +69,7 @@ class Unit
                 var tableCmd = connection.CreateCommand();
 
                 tableCmd.CommandText = $"UPDATE Unit SET Name='{newName}',Symbol='{newSymbol}' WHERE ID = {unitId}";
+
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -77,9 +79,7 @@ class Unit
         {
             return false;
         }
-
     }
-
 
     public static Boolean DeleteUnit(int unitId)
     {
@@ -112,6 +112,7 @@ class Unit
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = $"SELECT * FROM Habit where UnitID = {unitID}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -136,6 +137,7 @@ class Unit
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = $"SELECT * FROM Unit where ID = {unitId}";
+            
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)

@@ -1,5 +1,4 @@
 using Microsoft.Data.Sqlite;
-//using ConsoleHabitTracker.Models;
 namespace ConsoleHabitTracker;
 static class Database
 {
@@ -23,29 +22,26 @@ static class Database
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            //create Habits table
             tableCmd.CommandText = @"CREATE TABLE IF NOT EXISTS Habit (
          ID INTEGER PRIMARY KEY AUTOINCREMENT,
          Name TEXT,     
          UnitID INTEGER         
-     )";
+        )";
             tableCmd.ExecuteNonQuery();
 
-            //create entries table
             tableCmd.CommandText = @"CREATE TABLE IF NOT EXISTS Entry (
          ID INTEGER PRIMARY KEY AUTOINCREMENT,
          HabitID INTEGER,
          Date TEXT,
          Quantity INTEGER
-     )";
+        )";
             tableCmd.ExecuteNonQuery();
 
-            // create custom Units
             tableCmd.CommandText = @"CREATE TABLE IF NOT EXISTS Unit (
          ID INTEGER PRIMARY KEY AUTOINCREMENT,
          Name TEXT,
          Symbol TEXT
-     )";
+        )";
             tableCmd.ExecuteNonQuery();
 
             connection.Close();
@@ -58,7 +54,6 @@ static class Database
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            //create Habits table
             tableCmd.CommandText = @"INSERT INTO Unit (Name,Symbol) VALUES ('Glasses','Gl')";
             tableCmd.ExecuteNonQuery();
             connection.Close();

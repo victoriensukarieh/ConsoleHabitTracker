@@ -49,7 +49,6 @@ Press X to Exit.");
     {
         string choice = "";
         bool rightChoice = false;
-        //string idInput;
         int habitId;
         while (rightChoice == false)
         {
@@ -349,7 +348,6 @@ Press X to go back to the main menu.");
                     break;
                 case "2":
                     Console.Clear();
-                    //Entry.DisplayEntriesSummary();
                     Console.WriteLine("Entries Per Month");
                     Entry.DisplayReportPerMonth();
                     Console.WriteLine("Entries Per Year");
@@ -469,6 +467,5 @@ Press X to go back to the main menu.");
         }
         Console.Clear();
         Menu.showMainMenu();
-
     }
 }

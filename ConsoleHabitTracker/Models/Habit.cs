@@ -2,7 +2,6 @@ using Microsoft.Data.Sqlite;
 using ConsoleHabitTracker;
 class Habit
 {
-
     public static void DisplayHabits()
     {
         var tableData = new List<List<object>>();
@@ -10,6 +9,7 @@ class Habit
         headerData.Add("ID");
         headerData.Add("Name");
         headerData.Add("Unit");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -18,6 +18,7 @@ class Habit
             tableCmd.CommandText = @"SELECT Habit.ID, Habit.Name, Habit.UnitID,Unit.Name,Unit.Symbol
             FROM Habit,Unit
             WHERE Habit.UnitID = Unit.ID";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -28,7 +29,6 @@ class Habit
                     tableData.Add(
                         new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(4) }
                     );
-                    //Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Unit = {reader.GetString(4)}");
                 }
                 Helpers.PrintTable(tableData, headerData);
             }
@@ -42,6 +42,12 @@ class Habit
 
     public static void DisplaySingleHabit(int habitId)
     {
+        var tableData = new List<List<object>>();
+        var headerData = new List<String>();
+        headerData.Add("ID");
+        headerData.Add("Name");
+        headerData.Add("Unit");
+
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -51,14 +57,19 @@ class Habit
             FROM Habit,Unit
             WHERE Habit.UnitID = Unit.ID
             AND Habit.ID = {habitId}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Unit = {reader.GetString(4)}");
+                     var obj = new List<String>();
+                    tableData.Add(
+                        new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(4) }
+                    );                    
                 }
+                Helpers.PrintTable(tableData, headerData);
             }
             else
             {
@@ -99,6 +110,7 @@ class Habit
                 var tableCmd = connection.CreateCommand();
 
                 tableCmd.CommandText = $"UPDATE Habit SET Name='{newName}',UnitID='{newUnitId}' WHERE ID = {habitId}";
+                
                 tableCmd.ExecuteNonQuery();
                 connection.Close();
             }
@@ -122,7 +134,7 @@ class Habit
                 tableCmd.CommandText = $"DELETE FROM Habit WHERE ID = {habitId}";
 
                 tableCmd.ExecuteNonQuery();
-                //}
+                
                 return true;
             }
         }
@@ -141,6 +153,7 @@ class Habit
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = $"SELECT * FROM Entry where HabitID = {habitId}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
@@ -165,6 +178,7 @@ class Habit
             var tableCmd = connection.CreateCommand();
 
             tableCmd.CommandText = $"SELECT * FROM Habit where ID = {habitId}";
+
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
