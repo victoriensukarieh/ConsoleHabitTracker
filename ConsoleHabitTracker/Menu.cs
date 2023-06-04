@@ -138,7 +138,7 @@ Press X to go back to the main menu.");
                 case "4":
                     Console.Clear();
                     Habit.DisplayHabits();
-                    Console.WriteLine("Which habit do you want to delete. choose an ID (please note all entries related to this habit will be deleted as well.)");
+                    Console.WriteLine("Which habit do you want to delete. choose an ID (you cannot delete a habit that has entries.)");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
