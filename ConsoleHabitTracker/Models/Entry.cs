@@ -2,14 +2,13 @@ using Microsoft.Data.Sqlite;
 using ConsoleHabitTracker;
 class Entry
 {
-    
     public static void DisplayEntries(int habitId)
     {
         var tableData = new List<List<object>>();
         var headerData = new List<String>();
         headerData.Add("Quantity");
         headerData.Add("Symbol");
-        headerData.Add("Date");        
+        headerData.Add("Date");
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -27,11 +26,11 @@ AND h.ID = {habitId}";
                 while (reader.Read())
                 {
                     var obj = new List<String>();
-                    tableData.Add(                   
-                        new List<object>{ reader.GetInt32(0), reader.GetString(1), reader.GetString(2)}                        
-                    );                    
+                    tableData.Add(
+                        new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(2) }
+                    );
                 }
-                Helpers.PrintTable(tableData,headerData);           
+                Helpers.PrintTable(tableData, headerData);
             }
             else
             {
