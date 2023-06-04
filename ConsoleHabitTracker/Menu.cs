@@ -349,7 +349,13 @@ Press X to go back to the main menu.");
                     break;
                 case "2":
                     Console.Clear();
-                    Entry.DisplayEntriesSummary();
+                    //Entry.DisplayEntriesSummary();
+                    Console.WriteLine("Entries Per Month");
+                    Entry.DisplayReportPerMonth();
+                    Console.WriteLine("Entries Per Year");
+                    Entry.DisplayReportPerYear();
+                     Console.WriteLine("Entries Per Habit (toatal)");
+                     Entry.DisplayEntriesSummary();
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
                     break;

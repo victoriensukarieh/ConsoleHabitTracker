@@ -40,6 +40,88 @@ AND h.ID = {habitId}";
         }
     }
 
+    public static void DisplayReportPerYear(){
+        var tableData = new List<List<object>>();
+        var headerData = new List<String>();
+       headerData.Add("Year");        
+        headerData.Add("Habit");
+        headerData.Add("Sum");       
+        using (var connection = new SqliteConnection(Database.connectionString))
+        {
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+
+            tableCmd.CommandText = @"select STRFTIME('%Y', date) as year,
+Habit.Name,
+sum(Quantity) || ' '  || Unit.Name  as Sum
+From Entry  ,Habit,Unit
+where habit.ID = Entry.HabitID
+and Unit.Id = Habit.UnitID
+group by year";
+            SqliteDataReader reader = tableCmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    var obj = new List<String>();
+                    tableData.Add(
+                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2)}
+                    );
+                }
+                Helpers.PrintTable(tableData, headerData);
+            }
+            else
+            {
+                Console.WriteLine("No entry exists.");
+            }
+            connection.Close();
+        }
+
+    }
+
+     public static void DisplayReportPerMonth(){
+        var tableData = new List<List<object>>();
+        var headerData = new List<String>();
+        headerData.Add("Year");
+        headerData.Add("Month");
+        headerData.Add("Habit");
+        headerData.Add("Sum");        
+        using (var connection = new SqliteConnection(Database.connectionString))
+        {
+            connection.Open();
+            var tableCmd = connection.CreateCommand();
+
+            tableCmd.CommandText = @"select STRFTIME('%Y', date) as year,
+STRFTIME('%m', date) as month,
+Habit.Name,
+sum(Quantity) || ' '  || Unit.Name  as Sum
+From Entry  ,Habit,Unit
+where habit.ID = Entry.HabitID
+and Unit.Id = Habit.UnitID
+group by year,month";
+            SqliteDataReader reader = tableCmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    var obj = new List<String>();
+                    tableData.Add(
+                        new List<object> { reader.GetString(0), reader.GetString(1), reader.GetString(2),reader.GetString(3)}
+                    );
+                }
+                Helpers.PrintTable(tableData, headerData);
+            }
+            else
+            {
+                Console.WriteLine("No entry exists.");
+            }
+            connection.Close();
+        }
+        
+    }
+
     public static void DisplayEntriesDetailed(int habitId)
     {
         //Console.WriteLine("Quantity\tSymbol\tDate");
@@ -73,25 +155,34 @@ AND h.ID = {habitId}";
 
     public static void DisplayEntriesSummary()
     {
-        //Console.WriteLine("Quantity\tSymbol\tDate");
+        var tableData = new List<List<object>>();
+        var headerData = new List<String>();
+       
+        headerData.Add("Habit");
+        headerData.Add("Sum");        
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
             var tableCmd = connection.CreateCommand();
 
-            tableCmd.CommandText = @"select h.Name,SUM(Entry.Quantity),Unit.Symbol
-from entry,Habit h,Unit
-WHERE h.ID = entry.habitId
-and unit.ID = h.UnitID
-GROUP BY h.ID";
+            tableCmd.CommandText = @"select Habit.Name as Habit,
+sum(Quantity) || ' '  || Unit.Name  as Sum
+From Entry  ,Habit,Unit
+where habit.ID = Entry.HabitID
+and Unit.Id = Habit.UnitID
+group by Habit";
             SqliteDataReader reader = tableCmd.ExecuteReader();
 
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    Console.WriteLine($"{reader.GetString(0)}: {reader.GetInt32(1)} {reader.GetString(2)}");
+                    var obj = new List<String>();
+                    tableData.Add(
+                        new List<object> { reader.GetString(0), reader.GetString(1)}
+                    );
                 }
+                Helpers.PrintTable(tableData, headerData);
             }
             else
             {
@@ -99,6 +190,7 @@ GROUP BY h.ID";
             }
             connection.Close();
         }
+        
 
     }
 
