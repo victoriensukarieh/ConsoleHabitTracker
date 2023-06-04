@@ -34,7 +34,7 @@ Press X to Exit.");
                 case "C":
                     ShowEntryMenu();
                     rightChoice = true;
-                    break;
+                    break;                
                 case "X":
                     rightChoice = true;
                     break;

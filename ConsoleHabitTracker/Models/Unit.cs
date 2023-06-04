@@ -4,6 +4,11 @@ class Unit
 {
     public static void DisplayUnits()
     {
+        var tableData = new List<List<object>>();
+        var headerData = new List<String>();
+        headerData.Add("ID");
+        headerData.Add("Name");
+        headerData.Add("Symbol"); 
         using (var connection = new SqliteConnection(Database.connectionString))
         {
             connection.Open();
@@ -16,8 +21,13 @@ class Unit
             {
                 while (reader.Read())
                 {
-                    Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Symbol = {reader.GetString(2)}");
+                    var obj = new List<String>();
+                    tableData.Add(                   
+                        new List<object>{ reader.GetInt32(0), reader.GetString(1), reader.GetString(2)}                        
+                    );  
+                    //Console.WriteLine($"ID = {reader.GetInt32(0)}, Name = {reader.GetString(1)}, Symbol = {reader.GetString(2)}");
                 }
+                Helpers.PrintTable(tableData,headerData); 
             }
             else
             {

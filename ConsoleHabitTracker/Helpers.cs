@@ -1,3 +1,5 @@
+using ConsoleTableExt;
+
 class Helpers
 {
     public static int ValidateIntegerInput()
@@ -22,5 +24,16 @@ class Helpers
             input = Console.ReadLine();
         }
         return input;
+    }
+
+    public static void PrintTable(List<List<object>> tableData,List<String> header)
+    {
+        Console.WriteLine();
+        ConsoleTableBuilder
+            .From(tableData)
+            .WithFormat(ConsoleTableBuilderFormat.Alternative)
+            .WithColumn(header)
+            .ExportAndWriteLine();
+        Console.WriteLine();
     }
 }
