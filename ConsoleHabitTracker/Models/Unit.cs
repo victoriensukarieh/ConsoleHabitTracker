@@ -23,7 +23,6 @@ class Unit
             {
                 while (reader.Read())
                 {
-                    var obj = new List<String>();
                     tableData.Add(
                         new List<object> { reader.GetInt32(0), reader.GetString(1), reader.GetString(2) }
                     );

@@ -1,6 +1,6 @@
 class Menu
 {
-    public static void showGreeting()
+    public static void ShowGreeting()
     {
         Console.WriteLine("Hello there User!\nHow can i be of assisstance?\n");
         Console.WriteLine("Press any key to access the Main menu.\n");
@@ -8,7 +8,7 @@ class Menu
         Console.Clear();
     }
 
-    public static void showMainMenu()
+    public static void ShowMainMenu()
     {
         string choice = "";
         bool rightChoice = false;
@@ -24,11 +24,11 @@ Press X to Exit.");
             switch (choice.ToUpper())
             {
                 case "A":
-                    showHabitMenu();
+                    ShowHabitMenu();
                     rightChoice = true;
                     break;
                 case "B":
-                    showUnitMenu();
+                    ShowUnitMenu();
                     rightChoice = true;
                     break;
                 case "C":
@@ -45,7 +45,7 @@ Press X to Exit.");
         }
     }
 
-    public static void showHabitMenu()
+    public static void ShowHabitMenu()
     {
         string choice = "";
         bool rightChoice = false;
@@ -181,10 +181,10 @@ Press X to go back to the main menu.");
             }
         }
         Console.Clear();
-        Menu.showMainMenu();
+        Menu.ShowMainMenu();
     }
 
-    public static void showUnitMenu()
+    public static void ShowUnitMenu()
     {
         int unitId;
 
@@ -307,7 +307,7 @@ Press X to go back to the main menu.");
             }
         }
         Console.Clear();
-        Menu.showMainMenu();
+        Menu.ShowMainMenu();
     }
 
     public static void ShowEntryMenu()
@@ -466,6 +466,6 @@ Press X to go back to the main menu.");
             }
         }
         Console.Clear();
-        Menu.showMainMenu();
+        Menu.ShowMainMenu();
     }
 }

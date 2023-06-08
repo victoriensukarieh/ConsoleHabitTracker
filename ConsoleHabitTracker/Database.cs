@@ -15,7 +15,7 @@ static class Database
             return false;
         }
     }
-    public static void prepareDatabase()
+    public static void PrepareDatabase()
     {
         using (var connection = new SqliteConnection(connectionString))
         {
@@ -47,7 +47,7 @@ static class Database
             connection.Close();
         }
     }
-    public static void setDefaults()
+    public static void SetDefaults()
     {
         using (var connection = new SqliteConnection(connectionString))
         {
