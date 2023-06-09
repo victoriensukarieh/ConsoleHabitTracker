@@ -39,7 +39,7 @@ Press X to Exit.");
                     rightChoice = true;
                     break;
                 default:
-                    Console.WriteLine(@"Wrong choice. Try again please.");
+                    Helpers.PrintWarningMessage("Wrong choice. Try again please.");
                     break;
             }
         }
@@ -78,21 +78,17 @@ Press X to go back to the main menu.");
                     int habitUnit = Helpers.ValidateIntegerInput();
                     while (!Unit.UnitExist(habitUnit))
                     {
-                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Unit with the chosen ID. Choose again.");
                         habitUnit = Convert.ToInt32(Console.ReadLine());
                     }
 
                     if (Habit.AddHabit(habitName, habitUnit))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Habit inserted successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Habit inserted successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while inserting new Habit.");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while inserting new Habit.");
                     }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
@@ -106,7 +102,7 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Choose a new Habit Name");
@@ -116,20 +112,16 @@ Press X to go back to the main menu.");
                     newUnitId = Helpers.ValidateIntegerInput();
                     while (!Unit.UnitExist(newUnitId))
                     {
-                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Unit with the chosen ID. Choose again.");
                         newUnitId = Helpers.ValidateIntegerInput();
                     }
                     if (Habit.UpdateHabit(habitId, newName, newUnitId))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Habit updated successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Habit updated successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while updating the Habit.");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while updating the Habit.");
                     }
 
                     Console.WriteLine("Press any key to go back.");
@@ -142,28 +134,22 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     if (Habit.IsHabitTracked(habitId))
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Habit cannot be deleted because there are some entries linked to it.");
-                        Console.ResetColor();
+                        Helpers.PrintWarningMessage("Habit cannot be deleted because there are some entries linked to it.");
                     }
                     else
                     {
                         if (Habit.DeleteHabit(habitId))
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Habit Deleted successfully.");
-                            Console.ResetColor();
+                            Helpers.PrintSuccessMessage("Habit Deleted successfully.");
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Something went wrong while deleting the habit.");
-                            Console.ResetColor();
+                            Helpers.PrintFailureMessage("Something went wrong while deleting the habit.");
                         }
                     }
 
@@ -174,8 +160,7 @@ Press X to go back to the main menu.");
                     rightChoice = true;
                     break;
                 default:
-                    Console.WriteLine("Wrong choice.");
-                    Console.WriteLine("Press any key to try again.");
+                    Helpers.PrintWarningMessage("Wrong choice.Press any key to try again.");
                     Console.ReadLine();
                     break;
             }
@@ -218,15 +203,11 @@ Press X to go back to the main menu.");
 
                     if (Unit.AddUnit(UnitName, UnitSymbol))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Unit inserted successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Unit inserted successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while inserting new Unit.");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while inserting new Unit.");
                     }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
@@ -239,7 +220,7 @@ Press X to go back to the main menu.");
                     unitId = Helpers.ValidateIntegerInput();
                     while (!Unit.UnitExist(unitId))
                     {
-                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Unit with the chosen ID. Choose again.");
                         unitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Choose a new Unit Name");
@@ -248,15 +229,11 @@ Press X to go back to the main menu.");
                     newSym = Console.ReadLine();
                     if (Unit.UpdateUnit(unitId, newName, newSym))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Unit updated successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Unit updated successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while updating the Unit.");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while updating the Unit.");
                     }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
@@ -268,28 +245,22 @@ Press X to go back to the main menu.");
                     unitId = Helpers.ValidateIntegerInput();
                     while (!Unit.UnitExist(unitId))
                     {
-                        Console.WriteLine("No Unit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Unit with the chosen ID. Choose again.");
                         unitId = Helpers.ValidateIntegerInput();
                     }
                     if (Unit.IsUnitUsed(unitId))
                     {
-                        Console.ForegroundColor = ConsoleColor.Yellow;
-                        Console.WriteLine("Unit cannot be deleted because it is used.");
-                        Console.ResetColor();
+                        Helpers.PrintWarningMessage("Unit cannot be deleted because it is used.");
                     }
                     else
                     {
                         if (Unit.DeleteUnit(unitId))
                         {
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Unit Deleted successfully.");
-                            Console.ResetColor();
+                            Helpers.PrintSuccessMessage("Unit Deleted successfully.");
                         }
                         else
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("Something went wrong while deleting the unit.");
-                            Console.ResetColor();
+                            Helpers.PrintFailureMessage("Something went wrong while deleting the unit.");
                         }
                     }
 
@@ -300,8 +271,7 @@ Press X to go back to the main menu.");
                     rightChoice = true;
                     break;
                 default:
-                    Console.WriteLine("Wrong choice.");
-                    Console.WriteLine("Press any key to try again.");
+                    Helpers.PrintWarningMessage("Wrong choice.Press any key to try again.");
                     Console.ReadLine();
                     break;
             }
@@ -337,7 +307,7 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Habit.DisplaySingleHabit(habitId);
@@ -365,22 +335,18 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Enter Quantity:");
                     quantity = Helpers.ValidateIntegerInput();
                     if (Entry.AddEntry(habitId, quantity))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Log inserted successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Log inserted successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while inserting data");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while inserting data");
                     }
 
                     Console.WriteLine("Press any key to go back.");
@@ -393,31 +359,26 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("choose the entry you want to update (choose entry ID)");
-
                     Entry.DisplayEntriesDetailed(habitId);
                     entryId = Helpers.ValidateIntegerInput();
                     while (!Entry.EntryExist(entryId))
                     {
-                        Console.WriteLine("No Habit with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Habit with the chosen ID. Choose again.");
                         entryId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("Enter Quantity:");
                     quantity = Helpers.ValidateIntegerInput();
                     if (Entry.UpdateEntry(entryId, quantity))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Log updated successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Log updated successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while updating data");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while updating data");
                     }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
@@ -429,7 +390,7 @@ Press X to go back to the main menu.");
                     habitId = Helpers.ValidateIntegerInput();
                     while (!Habit.HabitExist(habitId))
                     {
-                        Console.WriteLine("No Enty with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Enty with the chosen ID. Choose again.");
                         habitId = Helpers.ValidateIntegerInput();
                     }
                     Console.WriteLine("choose the entry you want to delete (choose entry ID)");
@@ -437,20 +398,16 @@ Press X to go back to the main menu.");
                     entryId = Helpers.ValidateIntegerInput();
                     while (!Entry.EntryExist(entryId))
                     {
-                        Console.WriteLine("No Enty with the chosen ID. Choose again.");
+                        Helpers.PrintWarningMessage("No Enty with the chosen ID. Choose again.");
                         entryId = Helpers.ValidateIntegerInput();
                     }
                     if (Entry.DeleteEntry(entryId))
                     {
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Log deleted successfully.");
-                        Console.ResetColor();
+                        Helpers.PrintSuccessMessage("Log deleted successfully.");
                     }
                     else
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Something went wrong while deleting data");
-                        Console.ResetColor();
+                        Helpers.PrintFailureMessage("Something went wrong while deleting data");
                     }
                     Console.WriteLine("Press any key to go back.");
                     Console.ReadLine();
@@ -459,8 +416,7 @@ Press X to go back to the main menu.");
                     rightChoice = true;
                     break;
                 default:
-                    Console.WriteLine("Wrong choice.");
-                    Console.WriteLine("Press any key to try again.");
+                    Helpers.PrintWarningMessage("Wrong choice.Press any key to try again.");
                     Console.ReadLine();
                     break;
             }
