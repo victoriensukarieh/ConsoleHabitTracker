@@ -7,6 +7,7 @@
     2. dotnet new console --name ConsoleHabitTracker
     3. dotnet new gitignore (this is important to do at the beginning so that you wont push unnessecary files and folders to your remote repo)
 3. get nuget packages
+    1. sqlite
 4. create repository on github
 
 # what i learned from this project
