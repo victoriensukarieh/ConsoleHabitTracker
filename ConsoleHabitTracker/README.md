@@ -8,7 +8,8 @@
     3. dotnet new gitignore (this is important to do at the beginning so that you wont push unnessecary files and folders to your remote repo)
 3. get nuget packages
     1. sqlite
-4. create repository on github
+4. change  "console": "internalConsole" to  "console": "externalTerminal" in launch,json file
+5. create repository on github
 
 # what i learned from this project
 1. how to use VS code in .net development
