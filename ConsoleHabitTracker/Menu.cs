@@ -2,7 +2,7 @@ class Menu
 {
     public static void ShowGreeting()
     {
-        Console.WriteLine("Hello there User!\nHow can i be of assisstance?\n");
+        Console.WriteLine("Hello there User!How are you?\nHow can i be of assisstance?\n");
         Console.WriteLine("Press any key to access the Main menu.\n");
         Console.ReadLine();
         Console.Clear();
